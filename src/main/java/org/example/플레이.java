@@ -18,6 +18,7 @@ public class 플레이 {
         장비_상점 장비_상점 = new 장비_상점();
         가방 가방 = new 가방();
         게임_설정 게임설정 = new 게임_설정();
+        물건 물건 = new 물건();
 
         게임_진행.프롤로그();
         System.out.println(게임_진행.캐릭터_이름_작성(scanner.next()) + "님 게임을 진행하겠습니다.");
@@ -445,5 +446,8 @@ public class 플레이 {
                 }
             }
         }
+    }
+
+    private static class 물건 {
     }
 }

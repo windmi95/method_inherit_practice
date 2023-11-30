@@ -1,5 +1,6 @@
+package org.example;
+
 import org.example.캐릭터;
-import org.example.크레아틴;
 
 interface 체력을_올려주는_기능 {
     public void 캐릭터_체력을_올려준다(캐릭터 게임_캐릭터);
@@ -48,11 +49,11 @@ class 물약 extends 물건 {
     }
 }
 
-class bcaa extends 물약 implements 체력을_올려주는_기능 {
+class bcaa_보충제 extends 물약 implements 체력을_올려주는_기능 {
     int 가격 = 500;
     int 체력_올려주기 = 1;
 
-    bcaa() {
+    bcaa_보충제() {
         가격_설정(가격);
         set체력을_올려주는_효과_지정(체력_올려주기);
     }
@@ -84,11 +85,11 @@ class bcaa extends 물약 implements 체력을_올려주는_기능 {
     }
 }
 
-abstract class 탄수화물_보충제 extends 물약 implements 체력을_올려주는_기능 {
+abstract class 탄수화물_보충제_supply extends 물약 implements 체력을_올려주는_기능 {
     int 가격  = 700;
     int 체력_올려주기 = 3;
 
-    탄수화물_보충제() {
+    탄수화물_보충제_supply() {
         가격_설정(가격);
         set체력을_올려주는_효과_지정(체력_올려주기);
     }
@@ -116,14 +117,14 @@ abstract class 탄수화물_보충제 extends 물약 implements 체력을_올려
     }
 }
 
-abstract class 프로틴 extends 물약 implements 근력을_올려주는_기능 {
+abstract class 프로틴_보충제 extends 물약 implements 근력을_올려주는_기능 {
     int 가격 = 500;
-    int 근력을_올려준더 = 1;
+    int 근력을_올려준다 = 1;
 
 
-    프로틴() {
+    프로틴_보충제() {
         가격_설정(가격);
-        set근력을_올려주는_효과_지정(근력을_올려준더);
+        set근력을_올려주는_효과_지정(근력을_올려준다);
     }
 
     public int get근력을_올려주는_효과_지정 () {
@@ -131,7 +132,7 @@ abstract class 프로틴 extends 물약 implements 근력을_올려주는_기능
     }
 
     public void set근력을_올려주는_효과_지정 (int 근력을_올려주는_효과) {
-        super.set근력을_올려주는_효과_지정(근력을_올려준더);
+        super.set근력을_올려주는_효과_지정(근력을_올려준다);
     }
 
     @Override
@@ -180,4 +181,57 @@ abstract class creatine extends 물약 implements 근력을_올려주는_기능{
     public void 캐릭터_근력을_올려준다(캐릭터 게임_캐릭터) {
         게임_캐릭터.근력 = 게임_캐릭터.근력 + get근력을_올려주는_효과_지정();
     }
- }
+}
+class 손목_보호대 extends 물건 implements 근력을_올려주는_기능 {
+    int 가격 = 3000;
+    int 근력을_올려준다 = 10;
+    private int 근력을_올려주는_효과_지정;
+
+    손목_보호대() {
+        가격_설정(가격);
+        set근력을_올려주는_효과_지정(근력을_올려준다);
+    }
+
+    @Override
+    public void 캐릭터_근력을_올려준다(캐릭터 게임_캐릭터) {
+
+    }
+
+    @Override
+    int 가격_정보_가져오기() {
+        return 0;
+    }
+
+    @Override
+    void 가격_설정(int 가격) {
+
+    }
+
+    public void set근력을_올려주는_효과_지정(int 근력을_올려주는_효과_지정) {
+        this.근력을_올려주는_효과_지정 = 근력을_올려주는_효과_지정;
+    }
+
+    public int get근력을_올려주는_효과_지정() {
+        return 근력을_올려주는_효과_지정;
+    }
+}
+class 리프팅_웨어 extends 물건 implements 근력을_올려주는_기능{
+    int 가격 = 5000;
+
+
+
+    @Override
+    public void 캐릭터_근력을_올려준다(캐릭터 게임_캐릭터) {
+
+    }
+
+    @Override
+    int 가격_정보_가져오기() {
+        return 0;
+    }
+
+    @Override
+    void 가격_설정(int 가격) {
+
+    }
+}

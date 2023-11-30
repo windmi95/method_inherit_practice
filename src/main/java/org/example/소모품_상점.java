@@ -15,8 +15,7 @@ public class 소모품_상점 {
         크레아틴 = new 크레아틴();
     }
     public void 소모품_목록() {
-        System.out.println("1.bc" +
-                "aa 2.탄수화물 보충제 3.프로틴 4.크레아틴");
+        System.out.println("1.bcaa 2.탄수화물 보충제 3.프로틴 4.크레아틴");
         System.out.println("어떤 것을 구매하시겠습니까?");
     }
     public void 소모품_개수체크() {
