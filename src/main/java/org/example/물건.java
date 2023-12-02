@@ -51,6 +51,31 @@ class 물약 extends 물건 {
         this.가격 = 가격;
     }
 }
+
+class 장비 extends 물건 {
+    int 근력을_올려주는_효과 = 0;
+    public void set근력을_올려주는_효과_지정 (int 근력을_올려주는_효과) {
+        this.근력을_올려주는_효과 = 근력을_올려주는_효과;
+    }
+    public int get근력을_올려주는_효과_지정() {
+        return 근력을_올려주는_효과;
+    }
+    @Override
+    int 가격_정보_가져오기 () {
+        return this.가격;
+    }
+
+    @Override
+    void 가격_설정(int 가격) {
+        this.가격 = 가격;
+    }
+
+    protected void 근력을_을려주는_효과_지정(int 근력을_올려주는_효과) {
+    }
+
+    protected void set근력을_을려주는_효과_지정(int 근력을_올려주는_효과) {
+    }
+}
 class 손목_보호대 extends 물건 implements 근력을_올려주는_기능 {
     int 가격 = 3000;
     int 근력을_올려준다 = 10;
