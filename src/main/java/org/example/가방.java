@@ -156,7 +156,7 @@ public class 가방 {//아이템 관리하는 클래스
                 return;
             } else {
                 bcaa_list.remove(bcaa_list.size() - 1);
-                bcaa.bcaa_효과(게임_캐릭터);
+                bcaa.캐릭터_체력을_올려준다(게임_캐릭터);
                 System.out.println("bcaa를 섭취하였습니다.");
                 System.out.println("체력 +1 상승하였습니다.");
                 System.out.println("현재 체력 -> "+ 게임_캐릭터.체력);
@@ -169,7 +169,7 @@ public class 가방 {//아이템 관리하는 클래스
                     return;
                 } else {
                     탄수화물_보충제_list.remove(탄수화물_보충제_list.size()-1);
-                    탄수화물_보충제.탄수화물_보충제_효과(게임_캐릭터);
+                    탄수화물_보충제.캐릭터_체력을_올려준다(게임_캐릭터);
                     System.out.println("탄수화물 보충제를 섭취하였습니다.");
                     System.out.println("체력 +3 상승하였습니다.");
                     System.out.println("현재 체력 -> "+ 게임_캐릭터.체력);
@@ -182,7 +182,7 @@ public class 가방 {//아이템 관리하는 클래스
                     return;
                 } else  {
                     프로틴_list.remove(프로틴_list.size()-1);
-                    프로틴.프로틴_효과(게임_캐릭터);
+                    프로틴.캐릭터_근력을_올려준다(게임_캐릭터);
                     System.out.println("프로틴을 섭취하였습니다.");
                     System.out.println("근력 +1 상승하였습니다.");
                     System.out.println("현재 근력 -> "+ 게임_캐릭터.근력);
@@ -194,7 +194,7 @@ public class 가방 {//아이템 관리하는 클래스
                     return;
                 } else {
                     크레아틴_list.remove(크레아틴_list.size()-1);
-                    크레아틴.크레아틴_효과(게임_캐릭터);
+                    크레아틴.캐릭터_근력을_올려준다(게임_캐릭터);
                     System.out.println("크레아틴을 섭취하였습니다.");
                     System.out.println("근력 +3 상승하였습니다.");
                     System.out.println("현재 근력 -> "+ 게임_캐릭터.근력);
