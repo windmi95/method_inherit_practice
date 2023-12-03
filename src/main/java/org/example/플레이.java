@@ -444,6 +444,8 @@ public class 플레이 {
                         System.out.println("잘 못 입력하셨습니다. 다시 입력해주세요.");
                     }
                 }
+            } else if (메인_메뉴_선택 == 8) {
+
             }
         }
     }
