@@ -14,7 +14,7 @@ public class 리프팅웨어 extends 장비 implements 근력을_올려주는_�
     }
 
     public void set근력을_올려주는_효과_지정(int 근력을_올려주는_효과) {
-        super.set근력을_을려주는_효과_지정(근력을_올려주는_효과);
+        super.set근력을_올려주는_효과_지정(근력을_올려주는_효과);
     }
     public int get근력을_올려주는_효과_지정() {
         return get근력을_올려주는_효과_지정();

@@ -61,6 +61,7 @@ class 장비 extends 물건 {
     public int get근력을_올려주는_효과_지정() {
         return 근력을_올려주는_효과;
     }
+
     @Override
     int 가격_정보_가져오기 () {
         return this.가격;
@@ -71,8 +72,6 @@ class 장비 extends 물건 {
         this.가격 = 가격;
     }
 
-    protected void set근력을_을려주는_효과_지정(int 근력을_올려주는_효과) {
-    }
 }
 
 
