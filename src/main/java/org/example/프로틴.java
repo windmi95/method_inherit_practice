@@ -1,12 +1,12 @@
 package org.example;
 
 public class 프로틴 extends 물약 implements 근력을_올려주는_기능 {
-    int 프로틴_가격 = 500;
+    int 가격 = 500;
 
     int 근력_올려주기 = 1;
 
     프로틴() {
-        가격_설정(프로틴_가격);
+        가격_설정(가격);
         set근력을_올려주는_효과_지정(근력_올려주기);
     }
 

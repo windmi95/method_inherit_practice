@@ -57,5 +57,6 @@ public class 게임_설정 {
             return null;
         }
     }
+
 }
 

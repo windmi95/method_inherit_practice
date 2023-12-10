@@ -52,8 +52,10 @@ class 물약 extends 물건 {
     }
 }
 
-class 장비 extends 물건 {
+abstract class 장비 extends 물건 {
     int 근력을_올려주는_효과 = 0;
+
+    boolean 캐릭터_장비_장착;
 
     public void set근력을_올려주는_효과_지정 (int 근력을_올려주는_효과) {
         this.근력을_올려주는_효과 = 근력을_올려주는_효과;
@@ -62,15 +64,24 @@ class 장비 extends 물건 {
         return 근력을_올려주는_효과;
     }
 
-    @Override
-    int 가격_정보_가져오기 () {
-        return this.가격;
+    public void set캐릭터한테_장비_장착_지정(boolean 캐릭터_장비_장착) {
+        this.캐릭터_장비_장착 = 캐릭터_장비_장착;
+    }
+    public boolean get캐릭터한테_장비_장착_지정() {
+        return 캐릭터_장비_장착;
     }
 
     @Override
-    void 가격_설정(int 가격) {
+    public int 가격_정보_가져오기 () {
+        return this.가격;
+    }
+
+
+    @Override
+    public void 가격_설정(int 가격) {
         this.가격 = 가격;
     }
+
 
 }
 

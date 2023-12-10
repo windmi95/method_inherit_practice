@@ -449,7 +449,4 @@ public class 플레이 {
             }
         }
     }
-
-    private static class 물건 {
-    }
 }

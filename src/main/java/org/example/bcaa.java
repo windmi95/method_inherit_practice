@@ -1,12 +1,12 @@
 package org.example;
 
 public class bcaa extends 물약 implements 체력을_올려주는_기능 {
-    int bcaa_가격 = 500;
+    int 가격 = 500;
 
     int 체력_올려주기 = 1;
 
     bcaa() {
-        가격_설정(bcaa_가격);
+        가격_설정(가격);
         set체력을_올려주는_효과_지정(체력_올려주기);
     }
 
