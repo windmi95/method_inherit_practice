@@ -3,6 +3,8 @@ package org.example;
 public class 복압_벨트 extends 장비 implements 근력을_올려주는_기능 {
     int 가격 = 10000;
 
+    boolean 캐릭터한테_장착되어있는지_여부 = false;
+
     int 근력을_올려준다 = 50;
 
     boolean 캐릭터_장비_장착;

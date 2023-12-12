@@ -17,7 +17,7 @@ public class 체육관 {
             System.out.println("1 ~ 50의 중량을 입력해주세요");
         } else if (캐릭터_레벨 < 71 && 캐릭터_등급 == 3) {
             System.out.println("1 ~ 70의 중량을 입력해주세요");
-        } else if (캐릭터_레벨 <= 101 && 캐릭터_등급 == 4) {
+        } else if (캐릭터_레벨 <= 100 && 캐릭터_등급 == 4) {
             System.out.println("1 ~ 100의 중량을 입력해주세요");
         }
     }
@@ -25,10 +25,13 @@ public class 체육관 {
         if (들고자_하는_바벨_중량선택 > 10 && 캐릭터_레벨 < 31) {
             System.out.println("해당 중량은 사용할 수 없습니다.");
             return false;
-        } else if (들고자_하는_바벨_중량선택 > 50 && 캐릭터_레벨 < 51) {
+        } else if (들고자_하는_바벨_중량선택 > 50 && 캐릭터_레벨 < 51 && 캐릭터_등급 < 2) {
             System.out.println("해당 중량은 사용할 수 없습니다.");
             return false;
-        } else if (들고자_하는_바벨_중량선택 > 70 && 캐릭터_레벨 < 101) {
+        } else if (들고자_하는_바벨_중량선택 > 70 && 캐릭터_레벨 < 71 && 캐릭터_등급 < 3) {
+            System.out.println("해당 중량은 사용할 수 없습니다.");
+            return false;
+        } else if (들고자_하는_바벨_중량선택 > 100 && 캐릭터_레벨 < 100 && 캐릭터_등급 < 4) {
             System.out.println("해당 중량은 사용할 수 없습니다.");
             return false;
         } else {
