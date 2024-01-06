@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Random;
 
 public class 캐릭터 {
-    int 근력_스탯_올리기_선택_경우= 1;
-    int 체력_스탯_올리기_선택_경우= 2;
+
+    int 근력_스탯_올리기_선택_경우= 1;//캐릭터 레벨이 올라갔을 때 근력 or 체력을 선택하여 스탯을 상승시킬 경우에 사용하는 멤버 변수
+    int 체력_스탯_올리기_선택_경우= 2;//캐릭터 레벨이 올라갔을 때 근력 or 체력을 선택하여 스탯을 상승시킬 경우에 사용하는 멤버 변수
     @JsonProperty("체력")
     public int 체력 = 50;
     @JsonProperty("근력")

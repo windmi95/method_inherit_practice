@@ -5,6 +5,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.prefs.Preferences;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class 게임_설정 {
     Preferences preferences = Preferences.userRoot();
@@ -14,6 +18,7 @@ public class 게임_설정 {
 
     public boolean 게임_bgm_효과_적용() {
         if (게임_bgm_틀기) {
+            Thread bgmThread = new Thread();
             System.out.println("==================배경 음악 재생중==================");
         }
         return false;
