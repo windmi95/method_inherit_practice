@@ -4,9 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javazoom.jl.player.Player;
+
 import java.util.prefs.Preferences;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.util.Scanner;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +19,38 @@ public class 게임_설정 {
     ObjectMapper objectMapper = new ObjectMapper();
     boolean 게임_bgm_틀기 = false;
     boolean 게임설정_메뉴_진행중 = true;
+
+    Player mp3Player;
+
+    public 게임_설정() {
+        JFrame frame = new JFrame("MP3 Player");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300,100);
+
+        JTextField fieldPathField = new JTextField(20);
+        JButton playButton = new JButton("Play");
+        JButton stopButton = new JButton("Stop");
+
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!게임_bgm_틀기) {
+                    음악_재생(filedPathField.getText());
+                    게임_bgm_틀기 = true;
+                }
+            }
+        }
+    });
+    stopButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (mp3Player != null) {
+                mp3Player.close(); //mp3 틀기 재생 중지
+                게임_bgm_틀기 = false;
+            }
+        }
+    }
+
 
     public boolean 게임_bgm_효과_적용() {
         if (게임_bgm_틀기) {
