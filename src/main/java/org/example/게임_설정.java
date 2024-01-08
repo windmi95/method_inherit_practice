@@ -1,14 +1,19 @@
 package org.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javazoom.jl.player.Player;
 
-import java.util.prefs.Preferences;
-import java.io.BufferedInputStream;
+import java.awt.*;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.BufferedInputStream;
+import java.util.prefs.Preferences;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,11 +40,12 @@ public class 게임_설정 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!게임_bgm_틀기) {
-                    음악_재생(filedPathField.getText());
-                    게임_bgm_틀기 = true;
+                    File file = new File(fieldPathField.getText());
+                    FileInputStream fis = new FileInputStream(file);
+                    BufferedInputStream bis = new BufferedInputStream(fis);
+                    mp3Player = new Player(bis);
                 }
             }
-        }
     });
     stopButton.addActionListener(new ActionListener() {
         @Override
@@ -49,13 +55,38 @@ public class 게임_설정 {
                 게임_bgm_틀기 = false;
             }
         }
-    }
+    });
 
+    frame.setLayout(new FlowLayout());
+    frame.add(filedPathField);
+    frame.add(playButton);
+    frame.add(stopButton);
+    frame.setVisible(true);
+}
+private void 음악_재생(String filePath) {
+    try {
+        File file = new File(filePath);
+        FileInputStream fis = new FileInputStream(filePath);
+        BufferedInputStream bis = new BufferedInputStream(fis);
+        mp3Player = new Player(bis);
+    } catch (Exception e) {
+        System.out.println("음악 파일을 찾을 수 없습니다.");
+    }
+}
 
     public boolean 게임_bgm_효과_적용() {
         if (게임_bgm_틀기) {
-            Thread bgmThread = new Thread();
-            System.out.println("==================배경 음악 재생중==================");
+            Thread bgmThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("==================배경 음악 재생중==================");
+                    while (게임_bgm_틀기) {
+                        mp3Player.play();
+                    }
+                }
+            });
+            bgmThread.start();
+            return true;
         }
         return false;
     }
