@@ -7,25 +7,26 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javazoom.jl.player.Player;
-
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.BufferedInputStream;
 import java.util.prefs.Preferences;
-import java.util.Scanner;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class 게임_설정 {
+    private Clip clip;
+    private boolean isPlaying = false;
     Preferences preferences = Preferences.userRoot();
     ObjectMapper objectMapper = new ObjectMapper();
     boolean 게임_bgm_틀기 = false;
     boolean 게임설정_메뉴_진행중 = true;
 
-    Player mp3Player;
 
     public 게임_설정() {
         JFrame frame = new JFrame("MP3 Player");
@@ -36,6 +37,14 @@ public class 게임_설정 {
         JButton playButton = new JButton("Play");
         JButton stopButton = new JButton("Stop");
 
+        JPanel panel = new JPanel();
+        panel.add(fieldPathField);
+        panel.add(playButton);
+        panel.add(stopButton);
+
+        frame.add(panel);
+        frame.setVisible(true);
+
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,32 +52,34 @@ public class 게임_설정 {
                     File file = new File(fieldPathField.getText());
                     FileInputStream fis = new FileInputStream(file);
                     BufferedInputStream bis = new BufferedInputStream(fis);
-                    mp3Player = new Player(bis);
+
+                    Thread bgmThread  = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                try {
+                                    clip = AudioSystem.getClip();
+                                    clip.open(bis);
+                                    clip.start();
+                                    게임_bgm_틀기 = true;
+                                } catch (Exception e) {
+                                    System.out.println("음악 파일을 찾을 수 없습니다.");
+                                }
+
+                            }
+                        }
+                    })
                 }
             }
     });
-    stopButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (mp3Player != null) {
-                mp3Player.close(); //mp3 틀기 재생 중지
-                게임_bgm_틀기 = false;
-            }
-        }
-    });
 
-    frame.setLayout(new FlowLayout());
-    frame.add(filedPathField);
-    frame.add(playButton);
-    frame.add(stopButton);
-    frame.setVisible(true);
 }
 private void 음악_재생(String filePath) {
     try {
         File file = new File(filePath);
         FileInputStream fis = new FileInputStream(filePath);
         BufferedInputStream bis = new BufferedInputStream(fis);
-        mp3Player = new Player(bis);
+
     } catch (Exception e) {
         System.out.println("음악 파일을 찾을 수 없습니다.");
     }
@@ -81,7 +92,7 @@ private void 음악_재생(String filePath) {
                 public void run() {
                     System.out.println("==================배경 음악 재생중==================");
                     while (게임_bgm_틀기) {
-                        mp3Player.play();
+
                     }
                 }
             });
