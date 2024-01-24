@@ -50,7 +50,7 @@ public class 게임_설정 {
             public void actionPerformed(ActionEvent e) {
                 if (!게임_bgm_틀기) {
                     File file = new File(fieldPathField.getText());
-                    FileInputStream fis = new FileInputStream(file);
+                    FileInputStream fis = new FileInputStream("C:\\Users\\user\\Downloads\\로이킴 괜찮을거야.mp3");
                     BufferedInputStream bis = new BufferedInputStream(fis);
 
                     Thread bgmThread  = new Thread(new Runnable() {
@@ -68,7 +68,8 @@ public class 게임_설정 {
 
                             }
                         }
-                    })
+                    });
+                    bgmThread.start();
                 }
             }
     });
