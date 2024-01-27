@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Random;
+
 class 승급심사 extends mission implements 승급_심사_횟수 {
 
     int 초급_승급_심사_해야할_운동횟수 = 100;
@@ -54,4 +56,48 @@ class 승급심사 extends mission implements 승급_심사_횟수 {
             return 0;
         }
     }
+
+    public void 승급_심사_진행_시_랜덤으로_운동_실행_불가능(캐릭터 게임_캐릭터) {
+        Random random = new Random();
+        int 랜덤으로_몇_초간_운동_실행_불가능 = random.nextInt(10);
+        if (게임_캐릭터.등급 == 1) {//초급 심사
+            if (랜덤으로_몇_초간_운동_실행_불가능 < 2) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("1초 동안 운동을 실행할 수 없습니다.");
+            }
+        } else if (게임_캐릭터.등급 == 2) {//중급 심사
+            if (랜덤으로_몇_초간_운동_실행_불가능 < 4) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("2초 동안 운동을 실행할 수 없습니다.");
+            }
+        } else if (게임_캐릭터.등급 == 3) {//고급 심사
+            if (랜덤으로_몇_초간_운동_실행_불가능 < 6) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("3초 동안 운동을 실행할 수 없습니다.");
+            }
+        } else if (게임_캐릭터.등급 == 4) {//초월 심사
+            if (랜덤으로_몇_초간_운동_실행_불가능 < 8) {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("5초 동안 운동을 실행할 수 없습니다.");
+            }
+        }
+    }
+
 }
+

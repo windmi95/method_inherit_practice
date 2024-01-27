@@ -11,6 +11,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
 import java.util.prefs.Preferences;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -50,7 +51,12 @@ public class 게임_설정 {
             public void actionPerformed(ActionEvent e) {
                 if (!게임_bgm_틀기) {
                     File file = new File(fieldPathField.getText());
-                    FileInputStream fis = new FileInputStream("C:\\Users\\user\\Downloads\\로이킴 괜찮을거야.mp3");
+                    FileInputStream fis = null;
+                    try {
+                        fis = new FileInputStream("C:\\Users\\User\\Downloads\\y2mate.com - 로이킴 Roy Kim  괜찮을거야 Live Clip  2023 ROY KIM CONCERT Roy Note.mp3");
+                    } catch (FileNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     BufferedInputStream bis = new BufferedInputStream(fis);
 
                     Thread bgmThread  = new Thread(new Runnable() {
@@ -65,7 +71,6 @@ public class 게임_설정 {
                                 } catch (Exception e) {
                                     System.out.println("음악 파일을 찾을 수 없습니다.");
                                 }
-
                             }
                         }
                     });
