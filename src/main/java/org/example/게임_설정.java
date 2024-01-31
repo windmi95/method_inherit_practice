@@ -1,24 +1,20 @@
 package org.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.util.prefs.Preferences;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.prefs.Preferences;
 
 public class 게임_설정 {
     private Clip clip;
@@ -64,13 +60,16 @@ public class 게임_설정 {
                         public void run() {
                             try {
                                 try {
+                                    AudioInputStream ais = AudioSystem.getAudioInputStream(bis);
                                     clip = AudioSystem.getClip();
-                                    clip.open(bis);
+                                    clip.open(ais);
                                     clip.start();
                                     게임_bgm_틀기 = true;
-                                } catch (Exception e) {
-                                    System.out.println("음악 파일을 찾을 수 없습니다.");
+                                } catch (FileNotFoundException ex) {
+                                    throw new RuntimeException(ex);
                                 }
+                            } catch (Exception e1) {
+                                System.out.println("음악 파일을 찾을 수 없습니다.");
                             }
                         }
                     });
