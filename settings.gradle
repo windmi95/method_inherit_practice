@@ -1,2 +1,4 @@
 rootProject.name = 'untitled1'
+include 'src:main:music'
+findProject(':src:main:music')?.name = 'music'
 

@@ -1,13 +1,12 @@
 package org.example;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Random;
 
 public class 캐릭터 {
+
+    boolean isCharacterGroggy = false;
 
     int 근력_스탯_올리기_선택_경우= 1;//캐릭터 레벨이 올라갔을 때 근력 or 체력을 선택하여 스탯을 상승시킬 경우에 사용하는 멤버 변수
     int 체력_스탯_올리기_선택_경우= 2;//캐릭터 레벨이 올라갔을 때 근력 or 체력을 선택하여 스탯을 상승시킬 경우에 사용하는 멤버 변수
@@ -30,6 +29,8 @@ public class 캐릭터 {
     boolean 캐릭터_메뉴_확인중 = true;
 
     boolean 스텟올리기_진행중_여부 = false;
+
+    Thread 그로기_쓰레드;
 
     public void 손목보호대_장착(손목보호대 손목보호대, 가방 내가방) {
         this.손목보호대 = 손목보호대;
@@ -148,6 +149,25 @@ public class 캐릭터 {
             return false;
         }
     }
+
+    //그로기 상태 실행
+    public void checkGroggy(int threaSleep){
+        if(그로기_쓰레드 != null){
+            그로기_쓰레드.interrupt();
+        }
+        그로기_쓰레드 = new Thread(() -> {
+            try {
+                isCharacterGroggy = true;
+                Thread.sleep(threaSleep);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            isCharacterGroggy = false;
+        });
+        그로기_쓰레드.start();
+    }
+
+
     public void 레벨_상승() {
         this.레벨 = 레벨 + 1;
 
