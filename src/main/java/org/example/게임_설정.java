@@ -27,6 +27,8 @@ public class 게임_설정 {
     boolean 게임_bgm_틀기 = false;
     boolean 게임설정_메뉴_진행중 = true;
 
+    boolean isDay = true;
+
 
     public 게임_설정() {
         JFrame frame = new JFrame("MP3 Player");
@@ -149,14 +151,21 @@ private void 음악_재생(String filePath) {
         }
     }
     public void 타이머_설정() {
-        TimerTask task = new TimerTask() {
-            public void run() {
-                System.out.println(new Date() + " : Executing the task from"
-                + Thread.currentThread().getName());
+        TimerTask task = new TimerTask() {//현재 날짜와 시간 반영
+            @Override
+            public void run() {//밤 낮을 구분
+                if (isDay) {
+                    long delay = 12 * 60 * 60 * 1000L; // 12시간 기준
+                    isDay = false;
+                } else {
+                    isDay = true;
+                }
+                /*System.out.println(new Date() + " : Executing the task from"
+                + Thread.currentThread().getName());*/
             }
         };
         Timer timer = new Timer("Timer", true);
-        long delay = 3000L;
+        long delay = 3000L;//3초마다 run 실행
         System.out.println(new Date() + " : Scheduling");
         timer.schedule(task, delay);
     }
