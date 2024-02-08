@@ -14,6 +14,9 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.prefs.Preferences;
 
 public class 게임_설정 {
@@ -144,6 +147,18 @@ private void 음악_재생(String filePath) {
             System.out.println("저장된 게임 정보가 없습니다.");
             return null;
         }
+    }
+    public void 타이머_설정() {
+        TimerTask task = new TimerTask() {
+            public void run() {
+                System.out.println(new Date() + " : Executing the task from"
+                + Thread.currentThread().getName());
+            }
+        };
+        Timer timer = new Timer("Timer", true);
+        long delay = 3000L;
+        System.out.println(new Date() + " : Scheduling");
+        timer.schedule(task, delay);
     }
 
 }
