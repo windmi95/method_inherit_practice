@@ -19,7 +19,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.prefs.Preferences;
 
-public class 게임_설정 {
+public class 게임_설정 extends Thread{
     private Clip clip;
     private boolean isPlaying = false;
     Preferences preferences = Preferences.userRoot();
@@ -28,6 +28,12 @@ public class 게임_설정 {
     boolean 게임설정_메뉴_진행중 = true;
 
     boolean isDay = true;
+    private Player player;
+    private boolean isLoop;
+
+    private BufferedInputStream bis;
+
+    private FileInputStream fis;
 
 
     public 게임_설정() {
@@ -83,6 +89,21 @@ public class 게임_설정 {
             }
     });
 
+}
+public void run() {
+        try {
+            do {
+                player = new Player(bis);
+                player.play();
+
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+
+
+            } while(isLoop);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 }
 private void 음악_재생(String filePath) {
     try {
@@ -160,7 +181,7 @@ private void 음악_재생(String filePath) {
                 } else {
                     isDay = true;
                 }
-                /*System.out.println(new Date() + " : Executing the task from"
+                /*System.out.println(new Date() + " : Executing thexsc task from"
                 + Thread.currentThread().getName());*/
             }
         };
