@@ -28,7 +28,6 @@ public class 게임_설정 extends Thread{
     boolean 게임설정_메뉴_진행중 = true;
 
     boolean isDay = true;
-    private Player player;
     private boolean isLoop;
 
     private BufferedInputStream bis;
@@ -90,21 +89,7 @@ public class 게임_설정 extends Thread{
     });
 
 }
-public void run() {
-        try {
-            do {
-                player = new Player(bis);
-                player.play();
 
-                fis = new FileInputStream(file);
-                bis = new BufferedInputStream(fis);
-
-
-            } while(isLoop);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-}
 private void 음악_재생(String filePath) {
     try {
         File file = new File(filePath);
