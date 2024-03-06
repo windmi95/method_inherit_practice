@@ -4,20 +4,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.prefs.Preferences;
+import javazoom.jl.player.Player;
+
+
 
 public class 게임_설정 extends Thread{
     private Clip clip;
@@ -30,71 +27,22 @@ public class 게임_설정 extends Thread{
     boolean isDay = true;
     private boolean isLoop;
 
+    private File file;
     private BufferedInputStream bis;
 
     private FileInputStream fis;
 
+    int min, sec;
+    int day=1;
 
-    public 게임_설정() {
-        JFrame frame = new JFrame("MP3 Player");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,100);
 
-        JTextField fieldPathField = new JTextField(20);
-        JButton playButton = new JButton("Play");
-        JButton stopButton = new JButton("Stop");
 
-        JPanel panel = new JPanel();
-        panel.add(fieldPathField);
-        panel.add(playButton);
-        panel.add(stopButton);
-
-        frame.add(panel);
-        frame.setVisible(true);
-
-        playButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!게임_bgm_틀기) {
-                    File file = new File(fieldPathField.getText());
-                    FileInputStream fis = null;
-                    try {
-                        fis = new FileInputStream("C:\\Users\\User\\Downloads\\y2mate.com - 로이킴 Roy Kim  괜찮을거야 Live Clip  2023 ROY KIM CONCERT Roy Note.mp3");
-                    } catch (FileNotFoundException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    BufferedInputStream bis = new BufferedInputStream(fis);
-
-                    Thread bgmThread  = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                try {
-                                    AudioInputStream ais = AudioSystem.getAudioInputStream(bis);
-                                    clip = AudioSystem.getClip();
-                                    clip.open(ais);
-                                    clip.start();
-                                    게임_bgm_틀기 = true;
-                                } catch (FileNotFoundException ex) {
-                                    throw new RuntimeException(ex);
-                                }
-                            } catch (Exception e1) {
-                                System.out.println("음악 파일을 찾을 수 없습니다.");
-                            }
-                        }
-                    });
-                    bgmThread.start();
-                }
-            }
-    });
-
-}
-
-private void 음악_재생(String filePath) {
+    private void 음악_재생(String filePath) {
     try {
         File file = new File(filePath);
         FileInputStream fis = new FileInputStream(filePath);
         BufferedInputStream bis = new BufferedInputStream(fis);
+        player = new Player(bis);
 
     } catch (Exception e) {
         System.out.println("음악 파일을 찾을 수 없습니다.");
@@ -174,6 +122,13 @@ private void 음악_재생(String filePath) {
         long delay = 3000L;//3초마다 run 실행
         System.out.println(new Date() + " : Scheduling");
         timer.schedule(task, delay);
+    }
+    public int time() {
+        return min;
+    }
+
+    public int day() {
+        return day;
     }
 
 }

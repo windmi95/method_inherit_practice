@@ -443,7 +443,6 @@ public class 플레이 {
                         System.out.println("저장된 정보를 불러옵니다.");
                         게임설정.게임_정보_불러오기();
                         break;
-
                     } else if(게임설정_메뉴_번호_선택 == 4) {
                         System.out.println("메인 메뉴로 이동합니다.");
                         break;
