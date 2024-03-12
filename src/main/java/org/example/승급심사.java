@@ -63,7 +63,7 @@ class 승급심사 extends mission implements 승급_심사_횟수 {
         int 랜덤으로_몇_초간_운동_실행_불가능 = random.nextInt(5);
         if (게임_캐릭터.등급 == 1) {//초급 심사
             if (랜덤으로_몇_초간_운동_실행_불가능 < 2) {
-                게임_캐릭터.checkGroggy(10000);
+                게임_캐릭터.checkGroggy(1000);
                 System.out.println("1초 동안 운동을 실행할 수 없습니다.");
             }
         } else if (게임_캐릭터.등급 == 2) {//중급 심사

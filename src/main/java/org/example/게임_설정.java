@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.prefs.Preferences;
-import javazoom.jl.player.Player;
+
 
 
 
@@ -33,7 +33,7 @@ public class 게임_설정 extends Thread{
     private FileInputStream fis;
 
     int min, sec;
-    int day=1;
+    int day = 1;
 
 
 
@@ -42,7 +42,6 @@ public class 게임_설정 extends Thread{
         File file = new File(filePath);
         FileInputStream fis = new FileInputStream(filePath);
         BufferedInputStream bis = new BufferedInputStream(fis);
-        player = new Player(bis);
 
     } catch (Exception e) {
         System.out.println("음악 파일을 찾을 수 없습니다.");
