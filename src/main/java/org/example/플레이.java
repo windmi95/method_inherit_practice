@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 //게임을 진행하는 클래스
 public class 플레이 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         게임운영 게임_진행 = new 게임운영();
         체육관 체육관 = new 체육관();
@@ -19,11 +19,12 @@ public class 플레이 {
         가방 가방 = new 가방();
         게임_설정 게임설정 = new 게임_설정();
         물건 물건 = new 물건();
-
-
         퀘스트 퀘스트_1;
 
+        //게임 시작
+
         게임_진행.프롤로그();
+
         System.out.println(게임_진행.캐릭터_이름_작성(scanner.next()) + "님 게임을 진행하겠습니다.");
         while (!게임_진행.게임_종료) {
             게임_진행.메인_메뉴();
@@ -200,7 +201,7 @@ public class 플레이 {
 
                             boolean 캐릭터_장비_보유_여부 = 게임_캐릭터.캐릭터_장비_해제할_수_있는_목록_출력();
 
-                            //캐릭터가 장비를 보유한게 없다면  다시 진행한다.
+                            //캐릭터가 장비를 보유한게 없다면 다시 진행한다.
                             if (!캐릭터_장비_보유_여부) {
                                 break;
                             }

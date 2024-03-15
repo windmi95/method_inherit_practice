@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +25,10 @@ public class 게임_설정 extends Thread{
     boolean 게임_bgm_틀기 = false;
     boolean 게임설정_메뉴_진행중 = true;
 
+    JLabel la;
+    JLabel la1;
+    JLabel la2;
+
     boolean isDay = true;
     private boolean isLoop;
 
@@ -32,7 +37,7 @@ public class 게임_설정 extends Thread{
 
     private FileInputStream fis;
 
-    int min, sec;
+    int hour, min, sec;
     int day = 1;
 
 
@@ -128,6 +133,23 @@ public class 게임_설정 extends Thread{
 
     public int day() {
         return day;
+    }
+
+    class MyThread extends Thread{
+        public void run() {
+            int n = 0;
+
+            while (true) {
+                n++;
+                sec = n % 60;
+                min = n / 60 % 60;
+                hour = n / 3600;
+
+                if (min == 0) {
+                    la1.setText(String.format(" ※ 1분 경과"));
+                }
+            }
+        }
     }
 
 }
