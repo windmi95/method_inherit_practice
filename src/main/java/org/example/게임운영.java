@@ -4,21 +4,32 @@ public class 게임운영 {
     boolean 게임_종료 = false;
     boolean 운동_진행중 = true;
 
-    public void 프롤로그() {
-        System.out.println("");
-        System.out.println("");
-        System.out.println("=======================프롤로그=============================");
-        System.out.println("");
-        System.out.println("한 날, 잠을 청하던 나는 꿈 속에서 헬스장에 도착했다.");
-        System.out.println("호기심에 벨을 누르고 헬스장 안으로 들어갔다..... ");
-        System.out.println("헬스장 안으로 들어가자 심상치 않은 느낌에 나가고자 했을 때 문이 잠기게 되었다.");
-        System.out.println("");
-        System.out.println("직원: 어서오세요. 처음 방문하시나요?");
-        System.out.println("나: 네 헬스장 이용하려고 하는데 안내 부탁드립니다.");
-        System.out.println("직원: 최종 승급 심사를 통과하지 못하면 여기서 빠져나올 수 없습니다.");
-        System.out.println("직원: 계속 진행을 원하시면 계약서에 서명 부탁드립니다.");
-        System.out.println("캐릭터 이름을 입력해주세요 이름: ");
+    String 프롤로그;
+
+    public 게임운영 () {
+        this.프롤로그 = "\n\n"
+                +"=======================프롤로그=============================\n"
+                + "한 날, 잠을 청하던 나는 꿈 속에서 헬스장에 도착했다.\n"
+                + "호기심에 벨을 누르고 헬스장 안으로 들어갔다..... \n"
+                + "헬스장 안으로 들어가자 심상치 않은 느낌에 나가고자 했을 때 문이 잠기게 되었다.\n"
+                + "직원: 어서오세요. 처음 방문하시나요?\n"
+                + "나: 네 헬스장 이용하려고 하는데 안내 부탁드립니다.\n"
+                + "직원: 최종 승급 심사를 통과하지 못하면 여기서 빠져나올 수 없습니다.\n"
+                + "직원: 계속 진행을 원하시면 계약서에 서명 부탁드립니다.\n"
+                + "캐릭터 이름을 입력해주세요 이름: ";
     }
+
+    public void 프롤로그_타이핑_효과() {
+        for (int i = 0; i < 프롤로그.length(); i++) {
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.print(프롤로그.charAt(i));
+        }
+    }
+
     public String 캐릭터_이름_작성(String 캐릭터_이름) {
 
         return 캐릭터_이름;
