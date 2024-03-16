@@ -21,10 +21,10 @@ public class 플레이 {
         물건 물건 = new 물건();
         퀘스트 퀘스트_1;
 
+
+
+
         //게임 시작
-
-
-
         게임_진행.프롤로그_타이핑_효과();
 
         System.out.println(게임_진행.캐릭터_이름_작성(scanner.next()) + "님 게임을 진행하겠습니다.");
@@ -431,6 +431,7 @@ public class 플레이 {
                         int 게임_bgm_여부_번호_선택 = scanner.nextInt();
                         if (게임_bgm_여부_번호_선택 == 1) {
                             게임설정.게임_bgm_틀기 = true;
+                            게임설정.음악_재생();
                             게임설정.게임_bgm_효과_적용();
                             break;
                         } else if (게임_bgm_여부_번호_선택 == 2) {

@@ -4,8 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.*;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +18,9 @@ import java.util.prefs.Preferences;
 
 
 
+
+
+
 public class 게임_설정 extends Thread{
     private Clip clip;
     private boolean isPlaying = false;
@@ -24,11 +28,6 @@ public class 게임_설정 extends Thread{
     ObjectMapper objectMapper = new ObjectMapper();
     boolean 게임_bgm_틀기 = false;
     boolean 게임설정_메뉴_진행중 = true;
-
-    JLabel la;
-    JLabel la1;
-    JLabel la2;
-
     boolean isDay = true;
     private boolean isLoop;
 
@@ -41,12 +40,12 @@ public class 게임_설정 extends Thread{
     int day = 1;
 
 
-
-    private void 음악_재생(String filePath) {
+    public void 음악_재생() {
     try {
-        File file = new File(filePath);
-        FileInputStream fis = new FileInputStream(filePath);
-        BufferedInputStream bis = new BufferedInputStream(fis);
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("music-src-java/bgm.mp3"));
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
 
     } catch (Exception e) {
         System.out.println("음악 파일을 찾을 수 없습니다.");
@@ -145,9 +144,6 @@ public class 게임_설정 extends Thread{
                 min = n / 60 % 60;
                 hour = n / 3600;
 
-                if (min == 0) {
-                    la1.setText(String.format(" ※ 1분 경과"));
-                }
             }
         }
     }
