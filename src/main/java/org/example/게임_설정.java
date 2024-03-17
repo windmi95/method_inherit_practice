@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,7 +30,9 @@ public class 게임_설정 extends Thread{
     boolean 게임_bgm_틀기 = false;
     boolean 게임설정_메뉴_진행중 = true;
     boolean isDay = true;
-    private boolean isLoop;
+    private JLayeredPane layeredPane;
+    private JPanel backgroundPanel;
+    private JLabel loadingLabel;
 
     private File file;
     private BufferedInputStream bis;
@@ -147,6 +150,8 @@ public class 게임_설정 extends Thread{
             }
         }
     }
+
+
 
 }
 
