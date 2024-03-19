@@ -2,7 +2,6 @@ package org.example;//게임 전반적인 운영을 담당하는 클래스
 
 
 import javax.swing.*;
-import java.awt.*;
 
 public class 게임운영 {
     boolean 게임_종료 = false;
@@ -10,29 +9,12 @@ public class 게임운영 {
 
     String 프롤로그;
 
-    public class 게임로딩 extends JFrame {
-        private JProgressBar progressBar;
+    JFrame frame;
+    JProgressBar progressBar;
+    JButton starButton;
 
-        public 게임로딩() {
-            setTitle("게임 로딩");
-            setSize(300,200);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            JLayeredPane layeredPane = new JLayeredPane();
-            add(layeredPane, BorderLayout.CENTER);
 
-            JPanel backgroundPane1 = new JPanel();
-            backgroundPane1.setBackground(Color.BLACK);
-            layeredPane.add(backgroundPane1, JLayeredPane.DEFAULT_LAYER);
-
-            JLabel loadingLabel = new JLabel(new ImageIcon("loading.gif"));
-            loadingLabel.setBounds(100,50,100,100);
-            layeredPane.add(loadingLabel, JLayeredPane.POPUP_LAYER);
-
-            //게임 시작 코드
-            setVisible(true);
-        }
-    }
 
 
 
@@ -60,6 +42,27 @@ public class 게임운영 {
         }
     }
 
+    public void 게임로딩() {
+        String 로딩_표시 = "██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████\n";
+        for(int i = 0;i<로딩_표시.length();i++) {
+           try {
+               Thread.sleep(10);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+           System.out.println(로딩_표시);
+        }
+    }
+    /*public void 게임로딩_UI() {
+        JFrame jFrame = new JFrame("게임 로딩 중 입니다....");
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JProgressBar jProgressBar = new JProgressBar();
+        jProgressBar.setStringPainted(true);
+        frame.add(jProgressBar, BorderLayout.CENTER);
+
+    }*/
 
 
 

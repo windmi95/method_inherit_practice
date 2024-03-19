@@ -16,12 +16,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.prefs.Preferences;
 
-
-
-
-
-
-
 public class 게임_설정 extends Thread{
     private Clip clip;
     private boolean isPlaying = false;
